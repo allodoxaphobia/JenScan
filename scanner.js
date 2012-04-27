@@ -15,7 +15,7 @@ function _scan(classc_subnet,scanurls){
 	showlog();
 }
 
-function target_callback(id,lsip,liresult,lstype,loScanlistItem){
+function target_callback(id,lsip,liresult,lstype,loScanlistItem,stats){
 	if (scanner_targets[id]==null){return false;}
 	var newbatch=[];
 	
@@ -24,14 +24,14 @@ function target_callback(id,lsip,liresult,lstype,loScanlistItem){
 			killtarget(id);
 			break;
 		case "HIT":
-			overwriteresult(lsip + '|' + loScanlistItem["LABEL"]);
+			overwriteresult(lsip + '|' + loScanlistItem["LABEL"] + '|' + stats);
 			if (loScanlistItem["DEPTRIGGER"]!=1){killtarget(id);}
 			break;
 		case "UNKNOWN":
-			overwriteresult(lsip + '|UNKNOWN');
+			overwriteresult(lsip + '|UNKNOWN' + '|' + stats );
 			break;
 		case "DONE":
-			overwriteresult(lsip + '|UNKNOWN');
+			overwriteresult(lsip + '|UNKNOWN' + '|' + stats);
 			killtarget(id);
 			break;
 	}

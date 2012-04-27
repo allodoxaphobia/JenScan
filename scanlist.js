@@ -19,15 +19,17 @@
 				if (lines[x].substring(0,1) != "#"){
 					try{
 						tmp_data= lines[x].replace('\r','').split('|');
-						if(tmp_data.length==6){
+						if(tmp_data.length==8){
 							scanlist_scanurls.push(new Array)
-							scanlist_scanurls[scanlist_scanurls.length-1]["ID"]= parseInt(tmp_data[0])
-							scanlist_scanurls[scanlist_scanurls.length-1]["LABEL"]=tmp_data[1]
-							scanlist_scanurls[scanlist_scanurls.length-1]["IMAGE"]=tmp_data[2]
-							scanlist_scanurls[scanlist_scanurls.length-1]["HEIGHT"]= parseInt(tmp_data[3].split(",")[0])
-							scanlist_scanurls[scanlist_scanurls.length-1]["WIDTH"]= parseInt(tmp_data[3].split(",")[1])
-							scanlist_scanurls[scanlist_scanurls.length-1]["DEPTRIGGER"]= parseInt(tmp_data[4])
-							scanlist_scanurls[scanlist_scanurls.length-1]["DEPENDENCY"]= tmp_data[5]
+							scanlist_scanurls[scanlist_scanurls.length-1]["ID"]= parseInt(tmp_data[0]);
+							scanlist_scanurls[scanlist_scanurls.length-1]["LABEL"]=tmp_data[1];
+							scanlist_scanurls[scanlist_scanurls.length-1]["PORT"]=parseInt(tmp_data[2]);
+							scanlist_scanurls[scanlist_scanurls.length-1]["PROTO"]=tmp_data[3];
+							scanlist_scanurls[scanlist_scanurls.length-1]["IMAGE"]=tmp_data[4];
+							scanlist_scanurls[scanlist_scanurls.length-1]["HEIGHT"]= parseInt(tmp_data[5].split(",")[0]);
+							scanlist_scanurls[scanlist_scanurls.length-1]["WIDTH"]= parseInt(tmp_data[5].split(",")[1]);
+							scanlist_scanurls[scanlist_scanurls.length-1]["DEPTRIGGER"]= parseInt(tmp_data[6]);
+							scanlist_scanurls[scanlist_scanurls.length-1]["DEPENDENCY"]= tmp_data[7];
 						}else{
 							console.log('Invalid scan url in scanlist.txt: ' + lines[x])
 						}
