@@ -1,0 +1,28 @@
+#	 structure
+#	==========================
+#
+#	UID|device|SCAN Level|recon image|recon_size|triggers_dependency|dependency
+#
+#	uid : unique id for this entry
+#	recon_image: label to return
+#	recon_size= height, width set to 0 to ignore size
+#	triggers_dependency= set to 1 if you want to load dependant items based on the outcome of the result
+#		e.g. an entry with id 25 has triggers_dependency = 1 and its scanresult  = 0
+#		the scanner will load all urls for this host with dependency set to !25
+#		if the result came back as 1, it would load urls with dpendency=25
+#	dependency: add UId of image that should be located on this host before this entry is scanned 
+#		   (taken from previous scanround), 
+#	     		set to !UID to scan when this entry is missing, leave blank to scan regardless
+#
+#
+0|IIS7|welcome.png|0,0|0|
+1|IIS6|pagerror.gif|0,0|1|!0
+2|APACHE|icons/apache_pb.gif|0,0|1|!0
+3|APACHE 2.x|icons/apache_pb2.gif|0,0|1|!0
+#favicon on iis or not :)
+4|UNIDENTIFIED|favicon.ico|0,0|1|0
+5|UNIDENTIFIED|favicon.ico|0,0|1|!0
+6|Belkin Router|images/title_2.gif|321,28|0|!4
+7|Billion Router|customized/logo.gif|318,69|0|!4
+8|IR C2880|en/media/img140.gif|158,160|0|
+9|Traffic Grapher|images/prtg.gif|0,0|0|5

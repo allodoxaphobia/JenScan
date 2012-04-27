@@ -1,0 +1,36 @@
+<html>
+<script>
+	var start_time;
+	var end_time;
+	function getTimeSecs(){
+	var d = new Date();
+	var t_hour = d.getHours();     // Returns hours
+	var t_min = d.getMinutes();    // Returns minutes
+	var t_sec = d.getSeconds();    // Returns seocnds
+	var result = ((t_hour*60)+t_min)*60 + t_sec;
+	return result;
+	}
+
+	function handle_result(lsurl, result){
+		end_time=getTimeSecs();
+		document.write(end_time-start_time)
+	}
+
+	function CreateDelegate(contextObject, delegateMethod) {return function() { return delegateMethod.apply(contextObject, arguments);}}
+	function img_onload(){
+		handle_result(this.src,1);
+	}
+	function img_onerror(err) {
+		handle_result(this.src,0);
+	}
+	function RetrImg(lsURL){
+		objImage = new Image();
+		objImage.onload = CreateDelegate(objImage, img_onload); 
+		objImage.onerror = CreateDelegate(objImage, img_onerror); 
+		objImage.onabort = CreateDelegate(objImage, img_onerror); 
+		start_time=getTimeSecs();
+		objImage.src=lsURL; //loads async
+	}
+RetrImg("http://192.168.0.88/idontexist.html")
+</script>
+</html>

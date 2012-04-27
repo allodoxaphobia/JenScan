@@ -1,0 +1,26 @@
+#	 structure
+#	==========================
+#
+#	UID|device|SCAN Level|recon image|recon_size|is endpoint|scan_level|dependency
+#
+#	uid : unique id for this entry
+#	scan_level, which round this should be checked
+#	recon_image: label to return
+#	recon_size= height, width set to 0 to ignore size
+#	is endpoint= set to 1 of scan should halt for host if/when this entry is found
+#	dependency: add UId of image that should be located on this host before this entry is scanned 
+#		   (taken from previous scanround), 
+#	     		set to !UID to scan when this entry is missing, leave blank to scan regardless
+#
+#
+0|0|IIS7|welcome.png|0,0|1|
+1|1|IIS6|pagerror.gif|0,0|1|
+2|1|APACHE|icons/apache_pb.gif|0,0|1|
+3|1|APACHE 2.x|icons/apache_pb2.gif|0,0|1|
+4|1|UNKNOWN|favicon.ico|0,0|0|
+5|2|Belkin Router|images/title_2.gif|321,28|1!4
+6|2|Billion Router|customized/logo.gif|318,69!4
+#
+#
+#
+#
