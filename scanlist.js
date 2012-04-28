@@ -6,7 +6,7 @@
 	function scanlist_init(){
 		scanlist_isloaded=-1;
 		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open('GET', 'scanlist2.txt');
+		xmlhttp.open('GET', 'scanlist.txt');
 		xmlhttp.onreadystatechange = scanlist_init_callback;
 		xmlhttp.send();	
 	}
