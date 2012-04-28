@@ -16,9 +16,28 @@ It aims to be more performant then existing implementations by utilising
 
 
 
+USAGE
+=====
+drop the folder on a webserver as a whole and edit the the index.html file to your liking
+just include the following two lines
+
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript">_run();</script>
+
+You might also want to edit settings.js to reflect the target Class C subnet (or replace it with a function that retrieves it
+
+
+
+As is now the results are piped to the console of the browser, should you like other reporting options,
+alter the function scanner_log() in scanner.js
+
+
+
+WARANTY
+=======
 This code is eperimental and comes without any waranty what so ever.
+I did the original development tests on IE9 and further finetuning on Firefox 11.
+Should you encounter any issues on these or any other browser version, drop me a line.
+>>s p a m h o l e [A T] t e le ne t.b e<<
 
-
-
-For any questions, drop me a line s p a m h o l e [A T] t e le ne t.b e
 
