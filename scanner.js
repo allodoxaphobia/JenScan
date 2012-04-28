@@ -12,7 +12,7 @@ function _scan(classc_subnet,scanurls){
 		scanner_worklist=scanner_worklist+1;
 	}
 	
-	showlog();
+	scanner_log();
 }
 
 function target_callback(id,lsip,liresult,lstype,loScanlistItem,stats){
@@ -28,10 +28,10 @@ function target_callback(id,lsip,liresult,lstype,loScanlistItem,stats){
 			if (loScanlistItem["DEPTRIGGER"]!=1){killtarget(id);}
 			break;
 		case "UNKNOWN":
-			overwriteresult(lsip + '|UNKNOWN' + '|' + stats );
+			overwriteresult(lsip + '|UNKNOWN|' + stats );
 			break;
 		case "DONE":
-			overwriteresult(lsip + '|UNKNOWN' + '|' + stats);
+			overwriteresult(lsip + '|UNKNOWN|' + stats);
 			killtarget(id);
 			break;
 	}
@@ -47,7 +47,7 @@ function killtarget(id){
 	scanner_worklist=scanner_worklist-1;
 }
 
-function showlog(){
+function scanner_log(){
 
 	console.clear();
 	
@@ -61,7 +61,7 @@ function showlog(){
 		}
 	}
 	if (scanner_worklist>0){
-		setTimeout(showlog,3000);
+		setTimeout(scanner_log,3000);
 	}else{
 		console.log("--DONE--");
 	}
@@ -75,10 +75,10 @@ function overwriteresult(newresult){
 	//if not, will add to result lis
 	var exists=false;
 	for (var x=0;x < scanner_result.length ; x++){
-		//console.log(scanner_result[x].split('|')[0] + '|' + newresult.split('|')[0]);
 		if (scanner_result[x].split('|')[0] == newresult.split('|')[0]){
 			exists=true;
 			if(newresult.split('|')[1] != "UNKNOWN"){scanner_result[x]=newresult}
+			scanner_result[x]= scanner_result[x].split('|')[0] + "|" + scanner_result[x].split('|')[1] + "|" + newresult.split('|')[2]
 		}
 	}
 	

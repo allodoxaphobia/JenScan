@@ -16,7 +16,7 @@
 			var tmp_data=null
 			
 			for (var x=0;x<lines.length;x++){
-				if (lines[x].substring(0,1) != "#"){
+				if (lines[x].substring(0,1) != "#" && lines[x]!=""){
 					try{
 						tmp_data= lines[x].replace('\r','').split('|');
 						if(tmp_data.length==8){
@@ -31,11 +31,11 @@
 							scanlist_scanurls[scanlist_scanurls.length-1]["DEPTRIGGER"]= parseInt(tmp_data[6]);
 							scanlist_scanurls[scanlist_scanurls.length-1]["DEPENDENCY"]= tmp_data[7];
 						}else{
-							console.log('Invalid scan url in scanlist.txt: ' + lines[x])
+							console.log('Invalid scan url in scanlist.txt: line'+ (x+1))
 						}
 					}
 					catch(err){
-						console.log('Invalid scan url in scanlist.txt: ' + lines[x])				
+						console.log('Invalid scan url in scanlist.txt: ' + err.message)//lines[x])				
 					}
 					
 				}
