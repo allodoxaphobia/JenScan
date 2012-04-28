@@ -16,5 +16,5 @@
 7|Billion Router|80|http|customized/logo.gif|318,69|0|!4
 8|IR C2880|80|http|en/media/img140.gif|158,160|0|
 9|Traffic Grapher|80|http|images/prtg.gif|0,0|0|5
-10|Netgear ReadyNAS|445|https|images/NG/clear.gif|0,0|0|!0
+10|Netgear ReadyNAS|443|https|images/NG/clear.gif|0,0|0|!0
 #--end--

@@ -81,7 +81,7 @@ function target(iid,lsip, scanlist,report_callback,recon_mode){
 		objImage.onerror= function(){img_onerror(this,_id)}
 		objImage.onabort= function(){img_onerror(this,_id)}
 		start_time=getTimeSecs();
-		objImage.src=lsURL; //loads async
+		objImage.src=lsURL;
 	}
 
 }
