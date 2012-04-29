@@ -1,7 +1,8 @@
 JenScan
 ========
-
 Javascript Enhanced Network scanner
+Created by R.Somers 2012
+
 
 This is a lan reconnaisance tool, running in javascript and 
 only employing the Image Object src attribute and subsequent onload 
@@ -14,17 +15,14 @@ It aims to be more performant then existing implementations by utilising
 + time fingerprinting
 
 
-
-
 USAGE
 =====
 drop the folder on a webserver as a whole and edit the the index.html file to your liking
-just include the following two lines
+just include the following line
 
 <script type="text/javascript" src="main.js"></script>
-<script type="text/javascript">_run();</script>
 
-You might also want to edit settings.js to reflect the target Class C subnet (or replace it with a function that retrieves it
+You might also want to edit settings.js to reflect the target Class C subnet (or replace it with a function that retrieves it)
 
 
 
