@@ -3,7 +3,7 @@ JenScan
 
 Javascript Enhanced Network scanner
 
-This is a lan reconnaisance tool, fully running in javascript and 
+This is a lan reconnaisance tool, running in javascript and 
 only employing the Image Object src attribute and subsequent onload 
 and onerror event handling.
 
@@ -28,15 +28,11 @@ You might also want to edit settings.js to reflect the target Class C subnet (or
 
 
 
-As is now the results are piped to the console of the browser, should you like other reporting options,
+As is now the results are piped to a txtarea fiels, should you like other reporting options (e.g.: sending them back to the server),
 alter the function scanner_log() in scanner.js
 
 
 
-WARANTY
-=======
-This code is eperimental and comes without any waranty what so ever.
-I did the original development tests on IE9 and further finetuning on Firefox 11.
 Should you encounter any issues on these or any other browser version, drop me a line.
 >>s p a m h o l e [A T] t e le ne t.b e<<
 
