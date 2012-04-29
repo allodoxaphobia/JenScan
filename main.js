@@ -1,5 +1,5 @@
 var main_SCANURLS=null;
-
+var main_filesloaded=0;
 function _run(){
 	//load necessary files and then start main routine delayed
 	
@@ -13,7 +13,10 @@ function _run(){
 }
 
 function timed_run(){
-	try{
+	if (main_filesloaded < 4){
+		//waiting for all scripts to load
+		setTimeout("timed_run()",100);
+	}else{
 		if (scanlist_isloaded==0){ //we need to retrieve urls
 			scanlist_init()
 			setTimeout("timed_run()",100);
@@ -24,12 +27,7 @@ function timed_run(){
 				//libraries loaded, urllist loaded, time to go
 				_scan(settings_range);
 			}
-			
 		}
-	}catch(err){
-		//go back to sleep, still loading libraries
-		//this is an ugly hack cause firefox doesn't support onreadystatechange
-		setTimeout("timed_run()",100);
 	}
 }
 
@@ -41,5 +39,9 @@ function loadjs(filename){
   fileref.setAttribute("src", filename)
   document.getElementsByTagName("body")[0].appendChild(fileref)
 }
+
+
+//triggers everything
+_run();
 
 

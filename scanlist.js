@@ -80,3 +80,6 @@
 		}
 		return tmpurls;		
 	}
+
+//mark file as loaded
+main_filesloaded=main_filesloaded+1;

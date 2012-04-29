@@ -50,22 +50,41 @@ function killtarget(id){
 }
 
 function scanner_log(){
-
-	console.clear();
-	
 	var runtime =  _getTimeSecs() - scanner_starttime;
+
+	if (document.forms[0].scanoutput){
+		document.forms[0].scanoutput.value="Running for " + runtime + " seconds. Scanning " + scanner_worklist + " items.\n";
 	
-	console.log("Running for " + runtime + " seconds. Scanning " + scanner_worklist + " items.");
-	
-	if (scanner_result.length>0){
-		for (var x=0; x < scanner_result.length; x++){
-			console.log(scanner_result[x]);
+		if (scanner_result.length>0){
+			for (var x=0; x < scanner_result.length; x++){
+				document.forms[0].scanoutput.value += scanner_result[x] + '\n';
+			}
 		}
-	}
-	if (scanner_worklist>0){
-		setTimeout(scanner_log,3000);
-	}else{
-		console.log("--DONE--");
+		if (scanner_worklist>0){
+			setTimeout(scanner_log,3000);
+		}else{
+			document.forms[0].scanoutput.value += "--DONE--";
+		}
+
+	
+/*	}else{
+		console.clear();
+	
+
+	
+		console.log("Running for " + runtime + " seconds. Scanning " + scanner_worklist + " items.");
+	
+		if (scanner_result.length>0){
+			for (var x=0; x < scanner_result.length; x++){
+				console.log(scanner_result[x]);
+			}
+		}
+		if (scanner_worklist>0){
+			setTimeout(scanner_log,3000);
+		}else{
+			console.log("--DONE--");
+		}
+*/
 	}
 	
 }
@@ -95,3 +114,7 @@ function _getTimeSecs(){
 	var result = ((t_hour*60)+t_min)*60 + t_sec;
 	return result;
 }
+
+//mark file as loaded
+main_filesloaded=main_filesloaded+1;
+

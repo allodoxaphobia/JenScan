@@ -1,6 +1,6 @@
 
 
-function target(iid,lsip, scanlist,report_callback,recon_mode){
+function target(id,ip, scanlist,report_callback,recon_mode){
 	/*
 	ip = ip adres of target
 	scanlist = array of urls to scan on ip
@@ -15,9 +15,6 @@ function target(iid,lsip, scanlist,report_callback,recon_mode){
 	var death_timeout=4;
 	var stat_urltrycount=0;
 	var stat_urlomitcount=0;
-	var ip= lsip;
-	var id= iid;
-	this.IP=ip;
 	var start_time;
 
 //Async IMG LOadEvents	
@@ -94,6 +91,9 @@ function getTimeSecs(){
 	var result = ((t_hour*60)+t_min)*60 + t_sec;
 	return result;
 }
+
+//mark file as loaded
+main_filesloaded=main_filesloaded+1;
 
 
 
