@@ -1,7 +1,6 @@
 var scanner_targets=[];
 var scanner_result=[];
 var scanner_worklist=0;
-var scanner_starttime;
 
 function _scan(classc_subnet,scanurls){
 	scanner_starttime = _getTimeSecs();
@@ -17,23 +16,25 @@ function _scan(classc_subnet,scanurls){
 	scanner_log();
 }
 
-function target_callback(id,lsip,liresult,lstype,loScanlistItem,stats){
-	if (scanner_targets[id]==null){return false;}
+function target_callback(id,lsip,liresult,lstype,loScanlistItem,stats, time_taken){
+	if (scanner_targets[id]==null){return false;} //already killed of as dead
+
 	var newbatch=[];
 	
 	switch(lstype){	
 		case "DEAD":
+			overwriteresult(lsip + '|DEAD|' + stats  + '|' + time_taken);
 			killtarget(id);
 			break;
 		case "HIT":
-			overwriteresult(lsip + '|' + loScanlistItem["LABEL"] + '|' + stats);
+			overwriteresult(lsip + '|' + loScanlistItem["LABEL"] + '|' + stats + '|' + time_taken);
 			if (loScanlistItem["DEPTRIGGER"]!=1){killtarget(id);}
 			break;
 		case "UNKNOWN":
-			overwriteresult(lsip + '|UNKNOWN|' + stats );
+			overwriteresult(lsip + '|UNKNOWN|' + stats  + '|' + time_taken);
 			break;
 		case "DONE":
-			overwriteresult(lsip + '|UNKNOWN|' + stats);
+			overwriteresult(lsip + '|UNKNOWN|' + stats + '|' + time_taken);
 			killtarget(id);
 			break;
 	}
@@ -57,34 +58,14 @@ function scanner_log(){
 	
 		if (scanner_result.length>0){
 			for (var x=0; x < scanner_result.length; x++){
-				document.forms[0].scanoutput.value += scanner_result[x] + '\n';
+				if (scanner_result[x].indexOf('DEAD')==-1){document.forms[0].scanoutput.value += scanner_result[x] + '\n';}
 			}
 		}
 		if (scanner_worklist>0){
-			setTimeout(scanner_log,3000);
+			setTimeout(scanner_log,500);
 		}else{
 			document.forms[0].scanoutput.value += "--DONE--";
 		}
-
-	
-/*	}else{
-		console.clear();
-	
-
-	
-		console.log("Running for " + runtime + " seconds. Scanning " + scanner_worklist + " items.");
-	
-		if (scanner_result.length>0){
-			for (var x=0; x < scanner_result.length; x++){
-				console.log(scanner_result[x]);
-			}
-		}
-		if (scanner_worklist>0){
-			setTimeout(scanner_log,3000);
-		}else{
-			console.log("--DONE--");
-		}
-*/
 	}
 	
 }
@@ -99,7 +80,7 @@ function overwriteresult(newresult){
 		if (scanner_result[x].split('|')[0] == newresult.split('|')[0]){
 			exists=true;
 			if(newresult.split('|')[1] != "UNKNOWN"){scanner_result[x]=newresult}
-			scanner_result[x]= scanner_result[x].split('|')[0] + "|" + scanner_result[x].split('|')[1] + "|" + newresult.split('|')[2]
+			scanner_result[x]= scanner_result[x].split('|')[0] + "|" + scanner_result[x].split('|')[1] + "|" + newresult.split('|')[2] + "|" + newresult.split('|')[3]
 		}
 	}
 	
