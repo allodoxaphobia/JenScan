@@ -13,7 +13,7 @@ function _run(){
 }
 
 function timed_run(){
-	if (main_filesloaded < 4){
+	if (main_filesloaded < main_files2load){
 		//waiting for all scripts to load
 		setTimeout("timed_run()",100);
 	}else{
