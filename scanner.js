@@ -6,7 +6,7 @@ function _scan(classc_subnet,scanurls){
 	scanner_starttime = _getTimeSecs();
 	
 	var item=0;
-	for (var x=0; x<= 255; x++){
+	for (var x=1; x<= 254; x++){
 		scanner_targets.push(new target(item,classc_subnet + x,scanlist_loadurls(),target_callback));
 		scanner_targets[scanner_targets.length-1].Scan();
 		scanner_worklist=scanner_worklist+1;

@@ -56,7 +56,7 @@ function target(id,ip, scanlist,report_callback,recon_mode){
 		}else{
 		//failure also yields viable info
 		//e.g.: arp takes 3 seconds, if it fails before that we know that the ip is in use
-			if (isDeadHost(response_times,death_timeout)==true){
+			if (isDeadHost(response_times,death_timeout, stat_urltrycount)==true){
 				stopscanning==1 //dead, don't scan further
 				report_callback(id,ip,0,'DEAD',scanlist[current_scanlistItem],stat_urltrycount + "/" + stat_urlomitcount, time_taken);				
 			}else{;
@@ -98,7 +98,7 @@ function getTimeSecs(){
 	return result;
 }
 
-function isDeadHost(response_times,death_timeout){
+function isDeadHost(response_times,death_timeout, stat_urltrycount){
 	//tries to determine wether a host is dead, normal response time should be ~3 seconds for non existing ips
 	//as this is the arp timeout
 	//unfortunatly firefox and chrome seem to behave strangely, second scan round, the first item is tagged at ~1  second....
@@ -106,6 +106,9 @@ function isDeadHost(response_times,death_timeout){
 	//se we have to implement a system that takes accounts for more then one request.
 	//we'll take a death count o 3 trespasses
 	var deathcount = 0;
+	
+	if (stat_urltrycount >= 5){return false};  //added this for devices with really bad webservers, e.g.: my netgear readynas doesn't really like 10 consequtive requests and gets to a crawl :/ 
+
 	for (x=0; x< response_times.length; x++){
 		if (response_times[x]>= death_timeout){
 			deathcount=deathcount+1;
