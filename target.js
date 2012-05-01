@@ -107,7 +107,7 @@ function isDeadHost(response_times,death_timeout, stat_urltrycount){
 	//we'll take a death count o 3 trespasses
 	var deathcount = 0;
 	
-	if (stat_urltrycount >= 5){return false};  //added this for devices with really bad webservers, e.g.: my netgear readynas doesn't really like 10 consequtive requests and gets to a crawl :/ 
+	if (stat_urltrycount >= 4){return false};  //added this for devices with really bad webservers, e.g.: my netgear readynas doesn't really like 10 consequtive requests and gets to a crawl :/ 
 
 	for (x=0; x< response_times.length; x++){
 		if (response_times[x]>= death_timeout){
