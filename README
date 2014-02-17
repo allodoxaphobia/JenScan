@@ -1,7 +1,8 @@
 JenScan
 ========
 Javascript Enhanced Network scanner
-Created by R.Somers 2012
+Author: R.Somers
+License: GNU GPL v3
 
 
 This is a lan reconnaisance tool, running in javascript and 
